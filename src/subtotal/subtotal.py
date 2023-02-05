@@ -88,13 +88,24 @@ class User(User):
         return subdomains
 
 
+def get_root_domain(url: str) -> str:
+    """Get root domain location from url.
+    >>> print(get_root_domain("https://www.website.com"))
+    >>> "website.com" """
+    root_domain = urlparse(url.lower()).netloc
+    if not root_domain:
+        return url
+    # Remove any leading "www." or subdomains
+    if root_domain.count(".") > 1:
+        return root_domain[root_domain.rfind(".", 0, root_domain.rfind(".")) + 1 :]
+    return root_domain
+
+
 def main(args: argparse.Namespace = None):
     if not args:
         args = get_args()
 
-    parsedurl = urlparse(args.url)
-    if parsedurl.netloc:
-        args.url = parsedurl.netloc.strip("www.")
+    args.url = get_root_domain(args.url)
     if not args.output_file:
         (Path.cwd() / "subtotals").mkdir(parents=True, exist_ok=True)
         args.output_file = Path.cwd() / "subtotals" / f"{args.url}-subdomains.txt"

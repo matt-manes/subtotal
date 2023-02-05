@@ -38,3 +38,16 @@ def test__subtotal__main(url: str):
     for subdomain in test:
         assert subdomain in control
     shutil.rmtree(args.output_file.parent)
+
+
+def test__subtotal__get_root_domain():
+    urls = [
+        "https://www.website.com",
+        "https://anothersite.org/somepage",
+        "HtTpS://subdomain.WeBsItE.net",
+        "alreadyroot.com",
+    ]
+    assert subtotal.get_root_domain(urls[0]) == "website.com"
+    assert subtotal.get_root_domain(urls[1]) == "anothersite.org"
+    assert subtotal.get_root_domain(urls[2]) == "website.net"
+    assert subtotal.get_root_domain(urls[3]) == "alreadyroot.com"
