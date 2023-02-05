@@ -120,10 +120,7 @@ def main(args: argparse.Namespace = None):
             user.expand_subdomains()
         except Exception as e:
             try:
-                user.solve_audio_captcha_google(
-                    ['//iframe[@title="reCAPTCHA"]'],
-                    ['//iframe[@title="recaptcha challenge expires in two minutes"]'],
-                )
+                user.solve_recaptcha_v3()
             except:
                 pass
             time.sleep(1)
