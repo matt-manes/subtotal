@@ -1,5 +1,5 @@
-# subtotal
-Get subdomains for a url from virustotal.com without an api key. <br>
+# Subtotal
+Get subdomains for a url from virustotal without an api key. <br>
 Install with:<br>
 <pre>
 pip install subtotal
@@ -11,7 +11,7 @@ You can use either Firefox or Chrome, but the appropriate webdriver
 needs to be installed in your current working directory or in your PATH.<br>
 Firefox runs headless, but Chrome has to run in a visible browser window.<br>
 <br>
-Usage:
+### Usage:
 <pre>
 >subtotal -h
 usage: subtotal.py [-h] [-o OUTPUT_FILE] [-b BROWSER] url
